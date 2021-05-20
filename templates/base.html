@@ -11,14 +11,20 @@
     <title>Link Eazy</title>
 
     <style>
+        .body{
+            background-color: rgb(253, 220, 252);
+        }
         #page-container {
             position: relative;
             min-height: 100vh;
+            
+            background-color: rgb(189, 231, 250);
         }
 
         #content-wrap {
             padding-bottom: 2.5rem;
             /* Footer height */
+            background-color: rgb(189, 231, 250);
         }
 
         #footer {
@@ -27,23 +33,26 @@
             width: 100%;
             height: 4.0rem;
             /* Footer height */
+            background-color: rgb(253, 220, 252);
         }
     </style>
 </head>
 
-<body>
-    <div id="page-container">
+<body >
+    <center>
+    <div id="page-container" >
         <div id="content-wrap">
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-light p-3 mb-2 bg-primary text-white bg-secondary.bg-gradient">
                 <a class="navbar-brand" href="/">
-                    <img src="https://github.com/TechNotebookYT/Tutorial-Files/blob/master/logo_transparent.png?raw=true"
-                        width="60" height="60" alt="" loading="lazy">
-                    Meeting Link
+                    
+            
+                    Link Eazy
                 </a>
                 <span>
-                    <a href="/"><button type="button" class="btn btn-info">Home</button></a>
-                    <a href="/admin/interface/link/"><button type="button" class="btn btn-dark">New
+                    <a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+                    <a href="/admin/interface/link/"><button type="button" class="btn btn-primary">New
                             Meeting</button></a>
+                    <a href="#"><button type="button" class="btn btn-primary">Logout</button></a>
                 </span>
             </nav>
 
@@ -53,7 +62,7 @@
         </div>
 
     </div>
-
+</center>
 
 
     <!-- Bootstrap -->

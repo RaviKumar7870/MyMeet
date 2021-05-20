@@ -12,13 +12,15 @@ from django.contrib import messages
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required(login_url='login')
 def current_meeting(request):
     current_time = datetime.now()
 
     current_hour = current_time.hour #3:00 pm -> 15
     current_min = current_time.minute #3:00 pm -> 0
 
-    meeting_list = list(Link.objects.all())
+    meeting_list = list(Link.objects.filter(user=request.user))
 
     current_meeting = None
 
@@ -55,19 +57,24 @@ def current_meeting(request):
     if current_meeting == None:
         return render(request, 'nomeetings.html')
     else:
-        return render(request, 'linktoclick.html', {'obj': current_meeting})
+        return render(request, 'linktoclick.html', {'obj': current_meeting,'alls':meeting_list})
 
 
 def registerPage(request):
-    form = UserCreationForm()
+    if request.user.is_authenticated:
+	    return redirect('home')
+    else:
+        form = UserCreationForm()
 
-    if request.method=='POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-
-    context = {'form':form}
-    return render(request,'register.html',context)
+        if request.method=='POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account was created for ' + user)
+                return redirect('login')
+        context = {'form':form}
+        return render(request,'register.html',context)
 
 def loginPage(request):
 	if request.user.is_authenticated:
