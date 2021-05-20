@@ -15,9 +15,10 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def newMeeting(request):
-    form = NewMeetingForm()
+    user = request.user
+    form = NewMeetingForm(instance = user)
     if request.method =='POST':
-        form = NewMeetingForm(request.POST)
+        form = NewMeetingForm(request.POST,instance=user)
         if form.is_valid():
             form.save()
             return redirect('home')
