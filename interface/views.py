@@ -55,9 +55,9 @@ def current_meeting(request):
         current_meeting = meeting
 
     if current_meeting == None:
-        return render(request, 'nomeetings.html')
+        return render(request, 'nomeetings.html', {'alls':meeting_list})
     else:
-        return render(request, 'linktoclick.html', {'obj': current_meeting,'alls':meeting_list})
+        return render(request, 'linktoclick.html', { 'obj': current_meeting,'alls':meeting_list})
 
 
 def registerPage(request):

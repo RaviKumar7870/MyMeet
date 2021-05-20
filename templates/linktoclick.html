@@ -5,14 +5,14 @@
 <center><br>
     <br><br>
 
-
-    <h1>Current Meeting: <i><b>{{ obj.meeting_name }}</b></i></h1>
+    <h1>Hello  {{ user.username}}</h1>
+    <h1>Your Current Meeting: <b>{{ obj.meeting_name }}</b></h1>
     <br>
     <br>
     <h2>Start Time: {{ obj.start_time }}</h2>
     <h2>End Time: {{ obj.end_time }}</h2>
 </center>
-<div class="jumbotron" style="background-color: rgb(145, 210, 248);">
+<div class="jumbotron" style="max-width: 95%;">
     <center>
         <a href="{{ obj.meeting_link }}"><button type="button" class="btn btn-dark">Link to Join: <b>{{ obj.meeting_name}}</b></button></a>
     </center>
@@ -31,7 +31,7 @@
               <h4 class="card-title">All Meeting Details</h4>
               <div class="card-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
-                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
   
                   <div class="input-group-append">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>

@@ -2,12 +2,87 @@
 
 
 {% block content %}
+<h1>Hello  {{ user.username}}</h1>
 <div class="d-flex justify-content-center">
-    <h1>No Meetings :)</h1>
+    <h1>Currently You Have No Meeting to Join :)</h1>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron" style="max-width: 95%;">
         <div class="d-flex justify-content-center">
-            <a href="https://meet.google.com"><button type="button" class="btn btn-dark">Google meet</button></a>
+            <a href="https://meet.google.com"><button type="button" class="btn btn-dark">Create a meet</button></a>
         </div>
 </div>
+
+<section>
+    <div class="container-fluid">
+  
+  
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+  
+            <!--Card Head-->
+            <div class="card-header">
+              <h4 class="card-title">All Meeting Details</h4>
+              <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+
+  
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="card-body">
+              <div class="table-responsive">
+            <table class="table table-striped table-hover ">
+              <thead >
+                <tr class="text-center">
+                    <th></th>
+                  <th>Meet Name</th>
+                  <th class="text-center">Meet Link</center>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>M</th>
+                  <th>T</th>
+                  <th>W</th>
+                  <th>T</th>
+                  <th>F</th>
+                  <th>S</th>
+                  <th>S</th>
+
+                </tr>
+              </thead>
+              <tbody><h1>{{alls.user}}</h1>
+                  
+                {% for meet in alls %}
+                <tr class="text-center">
+                  <th scope="row"></th>
+                  <td>{{ meet.meeting_name }}</td>
+                  <td>{{ meet.meeting_link }}</td>
+                  <td>{{ meet.start_time }}</td>
+                  <td>{{ meet.end_time }}</td>
+                  <td>{{ meet.monday }}</td>
+                  <td>{{ meet.tuesday }}</td>
+                  <td>{{ meet.wednesday }}</td>
+                  <td>{{ meet.thursday }}</td>
+                  <td>{{ meet.friday }}</td>
+                  <td>{{ meet.user }}</td>
+           
+
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </section>
+
+
+
 {% endblock content %}
