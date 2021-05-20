@@ -9,9 +9,22 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from interface import urls
 from django.contrib import messages
+from .forms import NewMeetingForm
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+def newMeeting(request):
+    form = NewMeetingForm()
+    if request.method =='POST':
+        form = NewMeetingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            return redirect('newmeeting')
+    context = {'form': form}
+    return render(request,'newmeeting.html',context)
 
 @login_required(login_url='login')
 def current_meeting(request):
@@ -46,6 +59,11 @@ def current_meeting(request):
             day_list.append('Thursday')
         if meeting.friday == True:
             day_list.append('Friday')
+        if meeting.saturday == True:
+            day_list.append('Saturday')
+        if meeting.sunday == True:
+            day_list.append('Sunday')
+        
 
         if ((day_list.count(current_time.strftime('%A')) == 0)
             or (time_in_mins(start_time_hour, start_time_min) - 6) > time_in_mins(current_hour, current_min)
