@@ -10,22 +10,81 @@ from django.contrib.auth import authenticate, login, logout
 from interface import urls
 from django.contrib import messages
 from .forms import NewMeetingForm
-
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-
+"""
 def newMeeting(request):
     user = request.user
-    form = NewMeetingForm(instance = user)
+    form = NewMeetingForm()
+
     if request.method =='POST':
-        form = NewMeetingForm(request.POST,instance=user)
+        
+        form = NewMeetingForm(request.POST)
+        form['user']=User.objects.get(pk=user.id)
         if form.is_valid():
+            
             form.save()
             return redirect('home')
         else:
             return redirect('newmeeting')
     context = {'form': form}
     return render(request,'newmeeting.html',context)
+
+"""
+def newmeetinglink(request):
+    return render(request,'newmeeting.html',{})
+
+
+def newMeeting(request):
+    if request.method=='POST':
+        user_obj = User.objects.get(id = request.user.id)
+        meeting_name = request.POST.get('meeting_name')
+        meeting_link = request.POST.get('meeting_link')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        monday = False
+        tuesday = False
+        wednesday = False
+        thursday= False
+        friday= False
+        saturday= False
+        sunday= False
+        if request.POST.get('monday')=='on':
+            monday = True
+        if request.POST.get('tuesday')=='on':
+            tuesday = True
+        if request.POST.get('wednesday')=='on':
+            wednesday = True
+        if request.POST.get('thursday')=='on':
+            thursday = True
+        if request.POST.get('friday')=='on':
+            friday = True
+        if request.POST.get('saturday')=='on':
+            saturday = True
+        if request.POST.get('sunday')=='on':
+            sunday = True        
+
+        Link.objects.create(
+            user = user_obj,
+            meeting_name = meeting_name,
+            meeting_link = meeting_link,
+            start_time =start_time,
+            end_time = end_time,
+            monday =monday,
+            tuesday = tuesday,
+            wednesday = wednesday,
+            thursday =thursday,
+            friday =friday,
+            saturday =saturday,
+            sunday =sunday,
+        )
+
+        return redirect('home')
+
+
+  
+
 
 @login_required(login_url='login')
 def current_meeting(request):

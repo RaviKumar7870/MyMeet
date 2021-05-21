@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Link(models.Model):
     user = models.ForeignKey(User,on_delete = models.CASCADE)
-    meeting_name = models.CharField(max_length=100)
-    meeting_link = models.CharField(max_length = 100)
+    meeting_name = models.CharField(max_length=100,null=True,blank = True)
+    meeting_link = models.CharField(max_length = 100,null=True,blank = True)
 
     start_time = models.TimeField(default='08:00:00')
     end_time = models.TimeField(default='17:00:00')
