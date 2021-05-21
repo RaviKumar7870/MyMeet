@@ -6,7 +6,7 @@ I have used Django stack for this Webapp. The Purpose of this webapp is to reduc
 
 Soon We are going to implement Email Feature. By this user will get email as remainder just before the class start
 
-<h1>App Link </h1> - <a> mymeetapp.herokuapp.com</a>
+<h1>App Link </h1> - <a href="mymeetapp.herokuapp.com"> mymeetapp.herokuapp.com</a>
 
 <h1>
 Run this Repository on your Local Machine :
