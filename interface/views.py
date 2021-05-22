@@ -12,7 +12,6 @@ from django.contrib import messages
 from .forms import NewMeetingForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from post_office import mail
 from django.core.mail import send_mail
 # Create your views here.
 """
