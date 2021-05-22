@@ -12,6 +12,8 @@ from django.contrib import messages
 from .forms import NewMeetingForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from post_office import mail
+from django.core.mail import send_mail
 # Create your views here.
 """
 def newMeeting(request):
@@ -32,11 +34,15 @@ def newMeeting(request):
     return render(request,'newmeeting.html',context)
 
 """
+
+@login_required(login_url='login')
 def newmeetinglink(request):
     return render(request,'newmeeting.html',{})
 
 
+@login_required(login_url='login')
 def deleteMeet(request,id):
+
     Link.objects.filter(id =id).delete()
     return redirect('home')
 
@@ -44,6 +50,9 @@ def deleteMeet(request,id):
 
 
 
+
+
+@login_required(login_url='login')
 def newMeeting(request):
     if request.method=='POST':
         user_obj = User.objects.get(id = request.user.id)
@@ -136,13 +145,24 @@ def current_meeting(request):
         if ((day_list.count(current_time.strftime('%A')) == 0)
             or (time_in_mins(start_time_hour, start_time_min) - 6) > time_in_mins(current_hour, current_min)
                 or (time_in_mins(end_time_hour, end_time_min)) < time_in_mins(current_hour, current_min)):
+
             continue
-        
+
         current_meeting = meeting
 
     if current_meeting == None:
         return render(request, 'nomeetings.html', {'alls':meeting_list})
     else:
+
+        send_mail(
+        "MyMeetWebapp",
+        str(User.username)+str(current_meeting)+"       Username:"+str(request.user)+"      Meeting List is Here:"+str(meeting_list),
+        'mymeetwebapp.com',
+        ['ravibhai7812@gmail.com'],
+        fail_silently=False,
+        )
+
+
         return render(request, 'linktoclick.html', { 'obj': current_meeting,'alls':meeting_list})
 
 
