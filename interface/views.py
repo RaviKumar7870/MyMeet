@@ -36,6 +36,14 @@ def newmeetinglink(request):
     return render(request,'newmeeting.html',{})
 
 
+def deleteMeet(request,id):
+    Link.objects.filter(id =id).delete()
+    return redirect('home')
+
+
+
+
+
 def newMeeting(request):
     if request.method=='POST':
         user_obj = User.objects.get(id = request.user.id)
@@ -77,7 +85,7 @@ def newMeeting(request):
             thursday =thursday,
             friday =friday,
             saturday =saturday,
-            sunday =sunday,
+            sunday =sunday
         )
 
         return redirect('home')

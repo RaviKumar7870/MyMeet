@@ -14,7 +14,7 @@
 </center>
 <div class="jumbotron" style="max-width: 95%;">
     <center>
-        <a href="{{ obj.meeting_link }}"><button type="button" class="btn btn-dark">Link to Join: <b>{{ obj.meeting_name}}</b></button></a>
+        <a href="https://{{ obj.meeting_link }}"><button type="button" class="btn btn-dark">Link to Join: <b>{{ obj.meeting_name}}</b></button></a>
     </center>
 </div>
 
@@ -34,7 +34,7 @@
 
   
                   <div class="input-group-append">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-trash"></i></button>
                   </div>
                 </div>
               </div>
@@ -57,6 +57,7 @@
                   <th>F</th>
                   <th>S</th>
                   <th>S</th>
+                  <th>Delete</th>
 
                 </tr>
               </thead>
@@ -68,13 +69,53 @@
                   <td>{{ meet.meeting_link }}</td>
                   <td>{{ meet.start_time }}</td>
                   <td>{{ meet.end_time }}</td>
-                  <td>{{ meet.monday }}</td>
-                  <td>{{ meet.tuesday }}</td>
-                  <td>{{ meet.wednesday }}</td>
-                  <td>{{ meet.thursday }}</td>
-                  <td>{{ meet.friday }}</td>
-                  <td>{{ meet.saturday }}</td>
-                  <td>{{ meet.sunday }}</td>
+                  {% if meet.monday %}
+                    <td><i class="fa fa-check" style="font-size:23px;  color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+
+                  {% if meet.tuesday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)" ></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+
+                  {% if meet.wednesday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+
+                  {% if meet.thursday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+                  
+                  {% if meet.friday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+
+                  {% if meet.saturday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+                  
+                  {% if meet.sunday %}
+                  <td><i class="fa fa-check" style="font-size:23px; color:rgb(5, 216, 5)"></i></td>
+                  {% else %}   
+                    <td><i class="fa fa-times" style="font-size:23px; color:red"></i></td>
+                  {% endif %}     
+
+
+                  <td><a href="{% url 'deleteMeet' meet.id %}">
+                    <i class="fa fa-trash-o" style="font-size:30px;"></i>
+                  </a></td>
+
            
 
                 </tr>

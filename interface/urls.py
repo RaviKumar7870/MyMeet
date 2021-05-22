@@ -10,4 +10,5 @@ urlpatterns = [
 	path('logout/', views.logoutUser, name="logout"),
     path('newmeeting',views.newMeeting,name="newmeeting"),
     path('newmeetinglink',views.newmeetinglink,name="newmeetinglink"),
+    path('deleteMeet/<str:id>',views.deleteMeet,name="deleteMeet"),
 ]

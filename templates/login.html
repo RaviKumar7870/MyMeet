@@ -14,13 +14,13 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #eabcff !important;
+			background: rgb(211, 208, 208) !important;
 		}
 		.user_card {
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
-			background: #cc71f7;
+			background: #6c757d;
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -44,7 +44,7 @@
 
 		.login_btn {
 			width: 100%;
-			background: #33ccff !important;
+			background: #313333 !important;
 			color: white !important;
 		}
 		.login_btn:focus {
@@ -55,7 +55,7 @@
 			padding: 0 2rem;
 		}
 		.input-group-text {
-			background: #5bbef7 !important;
+			background: #313333 !important;
 			color: white !important;
 			border: 0 !important;
 			border-radius: 0.25rem 0 0 0.25rem !important;
@@ -79,10 +79,10 @@
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
+				<div class="d-flex justify-content-center" >
 
-
-					<h3 id="form-title">LOGIN</h3>
+					<h3 id="form-title">
+						<br>LOGIN</h3>
 				</div>
 				<div class="d-flex justify-content-center form_container">
 					<form method="POST" action="">
@@ -115,7 +115,7 @@
 				{% endfor %}			
 		
 				<div class="mt-4">
-					<div class="d-flex justify-content-center links">
+					<div class="d-flex justify-content-center links" style="margin-bottom:40px">
 						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
 					</div>
 			
